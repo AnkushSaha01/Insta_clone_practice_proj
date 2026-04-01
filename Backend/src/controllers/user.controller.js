@@ -12,9 +12,10 @@ const searchUser = async (req, res) => {
         {
             $search: {
                 index: "user_search_feature",
-                autocomplete: {
-                    query: q,
+                wildcard: {
+                    query: `*${q}*`,
                     path: "username",
+                    allowAnalyzedField: true
                 }
             }
         },
