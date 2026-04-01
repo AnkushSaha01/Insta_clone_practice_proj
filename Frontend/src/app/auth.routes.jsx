@@ -1,12 +1,23 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import Login from "../features/auth/pages/Login";
 import Register from "../features/auth/pages/Register";
 import Home from "../features/posts/Home";
+import Layout from "./Layout";
 
 const authRoutes = createBrowserRouter([
   {
-    path: "/home",
-    element: <Home/>,
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "home",
+        element: <Home />,
+      },
+      {
+        index: true,
+        element: <Navigate to="/home" replace />,
+      }
+    ]
   },
   {
     path: "/login",

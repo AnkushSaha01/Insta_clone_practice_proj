@@ -13,7 +13,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(passport.initialize());
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+}));
 
 // Configure Passport
 require("./config/passport.js")(passport);
