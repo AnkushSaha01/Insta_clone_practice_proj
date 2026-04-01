@@ -1,7 +1,7 @@
 const express = require("express");
 const authUser = require("../middlewares/auth.middleware.js");
 const multer = require("multer");
-const { createPost } = require("../controllers/post.controller.js");
+const { createPost,getPosts } = require("../controllers/post.controller.js");
 
 const upload = multer({
     storage: multer.memoryStorage(),
@@ -15,5 +15,6 @@ const router = express.Router();
 
 // POST /api/posts/
 router.post("/", authUser, upload.array('media', 7), createPost)
+router.get("/",authUser, getPosts)
 
 module.exports = router;
