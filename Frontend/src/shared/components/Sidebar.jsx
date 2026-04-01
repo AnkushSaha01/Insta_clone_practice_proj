@@ -5,7 +5,7 @@ const navItems = [
   { name: 'Home', icon: 'home', path: '/home' },
   { name: 'Search', icon: 'search', path: '/search' },
   { name: 'Explore', icon: 'explore', path: '/explore' },
-  { name: 'Reels', icon: 'spool', path: '/reels' },
+  
   { name: 'Messages', icon: 'chat', path: '/messages' },
   { name: 'Notifications', icon: 'favorite', path: '/notifications' },
   { name: 'Create', icon: 'add_box', path: '/create' },
@@ -16,8 +16,8 @@ const Sidebar = () => {
   return (
     <nav className="h-screen w-64 fixed left-0 top-0 border-r-0 bg-white shadow-[1px_0_0_0_rgba(0,0,0,0.05)] flex flex-col py-8 px-3 gap-y-1 z-50 transition-colors">
       {/* Brand Header */}
-      <div className="text-2xl font-black italic tracking-tighter text-black mb-10 px-3 cursor-pointer">
-        InstaClone
+      <div className="text-4xl font-bold tracking-tighter text-black mb-10 px-3 cursor-pointer">
+        Curator
       </div>
 
       {/* Navigation Links */}

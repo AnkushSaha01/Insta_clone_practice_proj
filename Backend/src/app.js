@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const postRouter = require("./routes/post.route.js");
+const userRouter = require("./routes/user.route.js");
 const cors = require("cors");
 
 
@@ -23,5 +24,6 @@ require("./config/passport.js")(passport);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRouter);
+app.use("/api/users", userRouter);
 
 module.exports = app;

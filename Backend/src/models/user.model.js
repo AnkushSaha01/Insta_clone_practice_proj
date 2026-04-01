@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema({
     },
     profilePicture: {
         type: String,
+        default: "https://ik.imagekit.io/bvd7qjtev/man-user-circle-icon.png?updatedAt=1773424691412"
     },
     fullname: {
         type: String,

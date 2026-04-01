@@ -1,8 +1,9 @@
 import { createBrowserRouter, Navigate } from "react-router";
 import Login from "../features/auth/pages/Login";
 import Register from "../features/auth/pages/Register";
-import Home from "../features/posts/Home";
+import Home from "../features/posts/pages/Home";
 import Layout from "./Layout";
+import CreatePost from "../features/posts/pages/CreatePost";
 
 const authRoutes = createBrowserRouter([
   {
@@ -16,8 +17,12 @@ const authRoutes = createBrowserRouter([
       {
         index: true,
         element: <Navigate to="/home" replace />,
+      },
+      {
+        path: "create",
+        element: <CreatePost />
       }
-    ]
+    ],
   },
   {
     path: "/login",
