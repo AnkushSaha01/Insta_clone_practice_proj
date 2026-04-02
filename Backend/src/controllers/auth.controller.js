@@ -101,6 +101,7 @@ async function getMe(req, res) {
     user: {
       id: user._id,
       username: user.username,
+      profilePicture: user.profilePicture,
       email: user.email,
       fullname: user.fullname,
     },
