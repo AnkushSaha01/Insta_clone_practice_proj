@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router';
+import User from '../../features/users/pages/User';
 
 const navItems = [
   { name: 'Home', icon: 'home', path: '/home' },
@@ -56,6 +57,7 @@ const Sidebar = () => {
           <span className="material-symbols-outlined text-[26px] transition-transform group-hover:scale-110">menu</span>
           <span className="text-[16px] tracking-tight">More</span>
         </a>
+        <User/>
       </div>
     </nav>
   );

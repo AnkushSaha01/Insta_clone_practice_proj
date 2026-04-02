@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#ffffff",
+              "inverse-primary": "#c6c6c6",
+              "tertiary-fixed-dim": "#474747",
+              "inverse-on-surface": "#f0f1f1",
+              "on-secondary-fixed": "#1b1c1c",
+              "surface-container-highest": "#e2e2e2",
+              "primary-fixed": "#5e5e5e",
+              "surface-bright": "#f9f9f9",
+              "on-secondary-container": "#1b1c1c",
+              "on-secondary-fixed-variant": "#3c3b3b",
+              "background": "#f9f9f9",
+              "surface-variant": "#e2e2e2",
+              "primary": "#000000",
+              "outline": "#777777",
+              "surface-dim": "#dadada",
+              "on-tertiary-fixed-variant": "#e2e2e2",
+              "on-error-container": "#410002",
+              "on-surface-variant": "#474747",
+              "on-background": "#1a1c1c",
+              "secondary-container": "#d6d4d3",
+              "secondary": "#5f5e5e",
+              "error-container": "#ffdad6",
+              "secondary-fixed": "#c8c6c5",
+              "tertiary": "#3b3b3b",
+              "secondary-fixed-dim": "#adabaa",
+              "on-surface": "#1a1c1c",
+              "primary-container": "#3b3b3b",
+              "on-primary-fixed-variant": "#e2e2e2",
+              "surface-container-low": "#f3f3f4",
+              "on-primary-container": "#ffffff",
+              "on-primary-fixed": "#ffffff",
+              "on-error": "#ffffff",
+              "error": "#ba1a1a",
+              "inverse-surface": "#2f3131",
+              "tertiary-fixed": "#5e5e5e",
+              "surface-container-high": "#e8e8e8",
+              "on-tertiary-fixed": "#ffffff",
+              "surface-tint": "#5e5e5e",
+              "outline-variant": "#c6c6c6",
+              "surface": "#f9f9f9",
+              "on-primary": "#e2e2e2",
+              "on-tertiary": "#e2e2e2",
+              "on-secondary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#eeeeee",
+              "primary-fixed-dim": "#474747",
+              "tertiary-container": "#747474"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+        .story-gradient-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.4) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body antialiased overflow-hidden">
+<!-- Blurred Background Feed (Visual Context) -->
+<main class="fixed inset-0 z-0 flex flex-col blur-xl grayscale opacity-40">
+<header class="flex items-center px-6 h-16 w-full bg-white">
+<span class="font-inter tracking-tighter text-2xl font-medium">Explore</span>
+</header>
+<section class="p-10 space-y-14">
+<div class="h-96 w-full bg-surface-container"></div>
+<div class="h-96 w-full bg-surface-container"></div>
+</section>
+</main>
+<!-- Modal Backdrop -->
+<div class="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-0 md:p-10">
+<!-- Navigation - Left -->
+<button class="hidden md:flex absolute left-8 z-50 text-white/30 hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined !text-5xl">chevron_left</span>
+</button>
+<!-- Story Container -->
+<div class="relative w-full max-w-[480px] aspect-[9/16] bg-black overflow-hidden md:rounded-xl shadow-2xl flex flex-col">
+<!-- Full Screen Portrait Photo -->
+<div class="absolute inset-0">
+<img class="w-full h-full object-cover grayscale brightness-75" data-alt="dramatic black and white high-contrast portrait of a Brutalist building with sharp shadows and clear sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSPaIVz1MDyQC7EY0EQQeFHYgcmE3IKlU94_Lc5k-3dqvUf_D1X0hxL-OxXb1ydAAZg5CBxQxMp9va8lwLPTVUQYfflTfiP0K5w4Zzpxo6zBCvzmMVpnEsA48ErngXHw6KmTLv6BS6bSiwgCuKfjnhH71AiNQjbn7poMkCmLeURelYddm1R5fXflTeH-QTRKgj2gETtz5S-b8OwkJz35xqqG487pROyBtC4PvlSFMiWQW0DeEUn1g0WyZPxRZKMuXQCE9-7e-4_wA"/>
+<div class="absolute inset-0 story-gradient-overlay"></div>
+</div>
+<!-- Top Header Layer -->
+<div class="relative z-10 p-4 space-y-4">
+<!-- Progress Bar -->
+<div class="flex gap-1.5 h-[2px] w-full bg-white/20">
+<div class="h-full bg-white/40 w-full rounded-full"></div>
+<div class="h-full bg-white w-1/3 rounded-full"></div>
+<div class="h-full bg-white/20 w-full rounded-full"></div>
+</div>
+<!-- User Info -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white/10">
+<img class="w-full h-full object-cover" data-alt="minimalist close-up headshot of a curator with neutral expression and soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUoSXQnJ0V0AB5CVfH1dUDF8iy52m_588UWsdCnID1S7GFwBH2jbVRYpS7icoNm8P0eFkzCjF499nW9kCB4ZgTD6NABLF9l22TQCaLKpawQv0Vox37w1IaDWq997cn_LjTaFCK_f-CsDvXgvSiTKb73GNyb_Gcrw4TNEgc7prrpj_AJUforl021VntRD4MUtpCBpeV0pmP5CRvkzUpghhPiYnxoIUUZPyzQLEUt45qZmCvpTXwyCD6BhLKjmLcP7QaTI08xGrN_gI"/>
+</div>
+<div class="flex flex-col">
+<span class="text-white text-sm font-semibold tracking-tight">elias_vogel</span>
+<span class="text-white/50 text-[10px] uppercase tracking-[0.1em] font-medium">14h ago</span>
+</div>
+</div>
+<!-- Close Button -->
+<button class="p-1 hover:bg-white/10 rounded-full transition-colors">
+<span class="material-symbols-outlined text-white">close</span>
+</button>
+</div>
+</div>
+<!-- Interactive Regions for Mobile -->
+<div class="absolute inset-0 z-0 flex">
+<div class="w-1/3 h-full cursor-pointer"></div>
+<div class="w-2/3 h-full cursor-pointer"></div>
+</div>
+<!-- Bottom Content (Optional Metadata) -->
+<div class="absolute bottom-0 left-0 w-full p-8 z-10">
+<div class="flex flex-col gap-2">
+<span class="text-white text-lg font-medium tracking-tight">Structures of Silence</span>
+<p class="text-white/60 text-xs leading-relaxed max-w-[80%]">Berlin, Germany — Exploring the intersection of concrete and light in the minimalist suburbs.</p>
+</div>
+</div>
+</div>
+<!-- Navigation - Right -->
+<button class="hidden md:flex absolute right-8 z-50 text-white/30 hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined !text-5xl">chevron_right</span>
+</button>
+</div>
+<!-- Hidden Sidebar Fragment (Adhering to Silent Curator rules if it were visible) -->
+<div class="hidden">
+<aside class="w-64 h-full bg-surface-container-lowest flex flex-col py-10 px-6 border-none">
+<div class="mb-10 text-primary font-semibold text-lg">monolith.</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 py-3 px-4 rounded-md text-on-surface bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" data-weight="fill">home</span>
+<span class="text-sm font-semibold">Feed</span>
+</a>
+<a class="flex items-center gap-3 py-3 px-4 rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="text-sm font-medium">Explore</span>
+</a>
+</nav>
+</aside>
+</div>
+</body></html>

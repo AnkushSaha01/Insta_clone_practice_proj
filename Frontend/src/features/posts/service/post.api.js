@@ -20,3 +20,11 @@ export async function createPost({ files, caption }) {
     return response.data
 
 } 
+
+export async function getStories() {
+    const response = await axios.get("http://localhost:3000/api/stories/get-stories", {
+        withCredentials: true
+    })
+
+    return response.data
+}

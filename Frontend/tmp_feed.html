@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#ffffff",
+              "inverse-primary": "#c6c6c6",
+              "tertiary-fixed-dim": "#474747",
+              "inverse-on-surface": "#f0f1f1",
+              "on-secondary-fixed": "#1b1c1c",
+              "surface-container-highest": "#e2e2e2",
+              "primary-fixed": "#5e5e5e",
+              "surface-bright": "#f9f9f9",
+              "on-secondary-container": "#1b1c1c",
+              "on-secondary-fixed-variant": "#3c3b3b",
+              "background": "#f9f9f9",
+              "surface-variant": "#e2e2e2",
+              "primary": "#000000",
+              "outline": "#777777",
+              "surface-dim": "#dadada",
+              "on-tertiary-fixed-variant": "#e2e2e2",
+              "on-error-container": "#410002",
+              "on-surface-variant": "#474747",
+              "on-background": "#1a1c1c",
+              "secondary-container": "#d6d4d3",
+              "secondary": "#5f5e5e",
+              "error-container": "#ffdad6",
+              "secondary-fixed": "#c8c6c5",
+              "tertiary": "#3b3b3b",
+              "secondary-fixed-dim": "#adabaa",
+              "on-surface": "#1a1c1c",
+              "primary-container": "#3b3b3b",
+              "on-primary-fixed-variant": "#e2e2e2",
+              "surface-container-low": "#f3f3f4",
+              "on-primary-container": "#ffffff",
+              "on-primary-fixed": "#ffffff",
+              "on-error": "#ffffff",
+              "error": "#ba1a1a",
+              "inverse-surface": "#2f3131",
+              "tertiary-fixed": "#5e5e5e",
+              "surface-container-high": "#e8e8e8",
+              "on-tertiary-fixed": "#ffffff",
+              "surface-tint": "#5e5e5e",
+              "outline-variant": "#c6c6c6",
+              "surface": "#f9f9f9",
+              "on-primary": "#e2e2e2",
+              "on-tertiary": "#e2e2e2",
+              "on-secondary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#eeeeee",
+              "primary-fixed-dim": "#474747",
+              "tertiary-container": "#747474"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9f9; }
+        .tonal-shift-from-white-to-gray-50 { background-color: #ffffff; }
+        .tonal-shift-surface-to-surface-lowest { background-color: #ffffff; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full bg-white dark:bg-black z-50 tonal-shift-from-white-to-gray-50 flex items-center px-6 h-16 w-full">
+<div class="flex items-center justify-between w-full max-w-screen-xl mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-black dark:text-white" data-icon="search">search</span>
+<h1 class="font-inter tracking-tighter text-2xl font-medium text-black dark:text-white">Explore</h1>
+</div>
+<div class="text-black dark:text-white font-semibold text-lg">The Silent Curator</div>
+</div>
+</header>
+<main class="pt-20 pb-28 max-w-screen-xl mx-auto px-4 md:px-6">
+<!-- Stories Section -->
+<section class="mb-10 overflow-x-auto no-scrollbar">
+<div class="flex gap-6 py-2">
+<!-- Story Items -->
+<div class="flex-none flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-full p-[2px] bg-white border border-outline-variant/15 ring-2 ring-surface-container-lowest">
+<img alt="curator" class="w-full h-full rounded-full object-cover grayscale" data-alt="close-up portrait of a man in minimalist black attire with sharp side lighting and deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw7vUMyrWk0V5EzVHtOfhuqK04omC-teMcebG8fXO6Blcd_NSXtxXvU-2Y6dvzgpfyIfT8j3fXqtIlyUtNi4QL7UtPYVOKIysf2Xhcxc742xfj9q6Yabt6PcwnA437Nj2uErH34afF_S4ibesEtiXsc8-Dmy3KJzSpVsvijJUzb9TJxYj2_LGiS1AxXSk3AypFCre4aflCWSl43jcOXGCfWWdB4hXfwr30ldQHHbAhebCZ7TbEorYAMGUUF52ln4EnlOAKtStbMSY"/>
+</div>
+<span class="text-[10px] uppercase tracking-widest font-label font-medium">Archive</span>
+</div>
+<div class="flex-none flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-full p-[2px] bg-white border border-outline-variant/15 ring-2 ring-surface-container-lowest">
+<img alt="curator" class="w-full h-full rounded-full object-cover grayscale" data-alt="high-fashion portrait of a woman looking away from camera, soft morning light, monochromatic aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPDwJBPGIzXbhgQGIDJQMhSH-3OGhFfC0Bih63MKsrO7q9_JmzfDzKYioDy9DBaPb0KqtWMssMc2hTKuiPeA1Nb4pzdwLsOnujJGn3Pw1bjurEiQI6Cy1BdGxif9WciQAT2dCwyErmcbM3JvPXpxkszTYCPxtlaKskMF7OPLMfLnxYedzJCOvHYUyijh12YiUhi72kYRqzbzJ1Ij6ANGuX9tbsgLl7AdrH7K7GEO4iZ2D1o-wL6elxETRDM_kpVzo1jTKo8gQipsY"/>
+</div>
+<span class="text-[10px] uppercase tracking-widest font-label font-medium">Forms</span>
+</div>
+<div class="flex-none flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-full p-[2px] bg-white border border-outline-variant/15 ring-2 ring-surface-container-lowest">
+<img alt="curator" class="w-full h-full rounded-full object-cover grayscale" data-alt="minimalist overhead shot of concrete stairs creating abstract geometric shadows in black and white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeLz8h3d0QvANV-s6fgmWrHSA1Ya7BEehFzKJOa1xoZ_AFQUNdu2oYUfA5haiHAHjsS3_xwkykafJEhDLAY_8e_2xBr10cDbFZxC7gABZVwAhoFUIbc4xh8bRWRkWwE424idp7pW6UpyEqqeVMIKJruxA4P2FHgPCSKEKSMW8w0L_dYJI1fd8jJif61pwrm4clo2LEZB-Dv0rTwClajAtNpoO7lIyv2v73AwlKZ-4gIUxmKfiqKd_466smX6SCJBTEoHZ2AIMLLg4"/>
+</div>
+<span class="text-[10px] uppercase tracking-widest font-label font-medium">Space</span>
+</div>
+<div class="flex-none flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-full p-[2px] bg-white border border-outline-variant/15 ring-2 ring-surface-container-lowest">
+<img alt="curator" class="w-full h-full rounded-full object-cover grayscale" data-alt="modern brutalist architecture detail with sharp angles and dramatic sky contrast in black and white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3zVyJnorEEMnv-rBYjEx9IGo2uH_0BK3LjQOHh7C2Y1DtFUsDwkCWJRdJorFa05pfg_7D92sP5fKdlSXyiu4X3lWNC7LE13bTU4JVfOpn1yKV6y6TGfDHh2TxX_sUS8XEb_V-YZMHykjJ0hmidOYAim6Rw_Ctg1umXlEyymXOwZpsBD-qKVHbN_kpwXxxRUw0NuLq1sKmufC2XzRtM9HFvLfFIWLxJm5OSN2vak62lNCNp1F-5vrmfQl-qy4-awTamriCs8DFIKE"/>
+</div>
+<span class="text-[10px] uppercase tracking-widest font-label font-medium">Urban</span>
+</div>
+<div class="flex-none flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-full p-[2px] bg-white border border-outline-variant/15 ring-2 ring-surface-container-lowest">
+<img alt="curator" class="w-full h-full rounded-full object-cover grayscale" data-alt="aesthetic close-up of folded fabric texture with soft natural lighting and heavy monochrome contrast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF6L9_VSUCg-hxmKeFi7ov8jotFbbp8qBjxHAg4qRpiBM16O37ZJ3flEceiQEkQl1tgm2g_Zh_7JteaJomu8hYTDQ66ufuqEuo1Cz-gAsy2G0ZMKUeCi5GwuTyyGKXD9VZqWRgdZGbB6KpNHzDpaTGSJr4G7Crajv0eYTNcwRGjMWr3Fs35i-RZLMeff1vTx8Dk_OXcmQIHzb_gBtfvD1eI7P6FlZQUoJ5RtVNJGny7FrqLI3X-XJoISKc_KB3WPaXDjT-l-LrQmE"/>
+</div>
+<span class="text-[10px] uppercase tracking-widest font-label font-medium">Detail</span>
+</div>
+<div class="flex-none flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-full p-[2px] bg-white border border-outline-variant/15 ring-2 ring-surface-container-lowest">
+<img alt="curator" class="w-full h-full rounded-full object-cover grayscale" data-alt="minimalist architectural window detail with reflection of passing clouds in stark black and white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADFosgd4M5GXnBoAj0vfHRken0JpnmK03kUcqI1PigPwHGpBxWwsJ0Blq0_NTRkt-oBAYz2ZVBaAmuYa2OSpxdlsUK9X5raw3bRU937qXJFHCt7qbkiSsB-6Aeu-JCxyiZ7gZm_IcK8ogJHniNDPXA8tcg-cX3F4oU9xMemdqZcHJg4WAqHHuCGP4prW6L7bWZ4K6NdHrCqdXXv10wmkKQ_x9HG8oV9H9VG_X8MoS7oBygpqBC_WZZ_yQFK9Yie_gjVqEKotWLFIc"/>
+</div>
+<span class="text-[10px] uppercase tracking-widest font-label font-medium">Light</span>
+</div>
+</div>
+</section>
+<!-- Feed Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-14">
+<!-- Bento Feed Item 1 -->
+<article class="md:col-span-12 group">
+<div class="relative w-full aspect-[16/9] overflow-hidden bg-surface-container-low rounded-xl">
+<img alt="Brutalist Structure" class="w-full h-full object-cover grayscale group-hover:scale-[1.02] transition-transform duration-700" data-alt="majestic brutalist concrete building facade with repetitive geometric window patterns under a clear high-contrast sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLd0Y3A6GnqfJ_KN4Mfh8KogHeJFYYiWGxGH_S3l7PWqmq1PPJsNp4Ov1e7iVOMYRBTO5kzJADJNokZqNfZrKyTI6GEMQpgvZtVPyR7eeAQlF2SQgUCDHLNeOZBqVjFLBcRw3PzkE9Y28bDMUjTdiM-tgMLLLpbjGFEShuAd-Xl6g0M63IXL3NsZm9LW6vn5L0D0MtauweDC8lrjmyB_kWAuDthjPBjuE5GiGCthZeOE08s6GWBNpvceqK1McNXYloEPG7y9am_Jg"/>
+<div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+</div>
+<div class="mt-6 flex justify-between items-start">
+<div>
+<h2 class="text-xl font-medium tracking-tight text-primary">Structure #082</h2>
+<p class="text-sm text-on-surface-variant mt-1">Helsinki, Finland — 2024</p>
+</div>
+<div class="flex gap-6">
+<button class="hover:opacity-60 transition-opacity"><span class="material-symbols-outlined" data-icon="favorite">favorite</span></button>
+<button class="hover:opacity-60 transition-opacity"><span class="material-symbols-outlined" data-icon="bookmark">bookmark</span></button>
+</div>
+</div>
+</article>
+<!-- Asymmetric Grid Row -->
+<article class="md:col-span-7 group">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container-low rounded-xl">
+<img alt="Lifestyle" class="w-full h-full object-cover grayscale group-hover:scale-[1.02] transition-transform duration-700" data-alt="minimalist fashion model silhouette leaning against a textured white wall with sharp architectural shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDktesSdmeZr6mjjy8BYKuYL3BYrBHW7NzeZo1HEY4oxsc0r8fPr6jxkRs0QCySh0fVbBvCWINsHGuPxi3nhhnlSheL41xeNgRSJYA73hE43rsI3fc9_sZiPqyWm4TvOV7OtIHsFihGmzBJMeh-POLSn9oreTdNlYpU7yswwaMiCFRoSIr0z_7psbIItjam9qEg4YILRI4rsUg8_8RafiRfuEfJqwIxtypoVI3tVGgnFD7tvT2YMenLitw5__xqd07yFcDpvtVT8eA"/>
+</div>
+<div class="mt-4">
+<h2 class="text-lg font-medium tracking-tight text-primary">Ephemeral Shadows</h2>
+<p class="text-xs uppercase tracking-widest font-label text-on-surface-variant mt-1">Series: Human &amp; Void</p>
+</div>
+</article>
+<article class="md:col-span-5 flex flex-col justify-between">
+<div class="group h-full">
+<div class="relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-xl">
+<img alt="Interior" class="w-full h-full object-cover grayscale group-hover:scale-[1.02] transition-transform duration-700" data-alt="extreme close-up of a vintage black typewriter on a pristine white desk with minimal aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3GAlZfKNFSfSBzSRXBWuwVNS71GBFFa90hFqIyNV_STqphD0xYsCim9eMaifp4Y4YsX8KQmG_LgGm3rPeouGenHNemjddZ9YfwBhpFtiLSEUk7IsSXh6U6oF9Ywlexq5l-cToP6XQQ1Q0LrFGav2M0IaNn-Vcwc-Yv9BFYT8ZLXh9YA-Dceq38Eu91c5mz0ooLBxEtkEJ9YJRxpQCPS-xFu3WZYT38k8KPMAxDDVbsCHFoRHzrfijaYd22fsblcGY_pxro2WyuYU"/>
+</div>
+<div class="mt-4">
+<h2 class="text-lg font-medium tracking-tight text-primary">Stillness</h2>
+<p class="text-xs uppercase tracking-widest font-label text-on-surface-variant mt-1">Object study</p>
+</div>
+</div>
+<div class="mt-10 p-8 bg-surface-container-lowest rounded-xl border border-outline-variant/15">
+<p class="font-body text-lg leading-relaxed italic text-on-surface-variant">
+                        "Curating is not about gathering, it is about eliminating the noise until only the soul remains."
+                    </p>
+<div class="mt-6 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+<span class="text-[10px] text-white font-bold">SC</span>
+</div>
+<span class="text-sm font-medium">Editorial Team</span>
+</div>
+</div>
+</article>
+<!-- Large Feed Item -->
+<article class="md:col-span-12 group mt-6">
+<div class="relative w-full aspect-video overflow-hidden bg-surface-container-low rounded-xl">
+<img alt="Landscape" class="w-full h-full object-cover grayscale group-hover:scale-[1.02] transition-transform duration-700" data-alt="serene mountain landscape reflected in a perfectly still lake with monochromatic gray tones and morning mist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMKlq8nHCRWQ5b-InUPCOh1PwWpEQ1dt-no7cPznVD21rnkyhcnjoSmVRO3VIn0acT4L08Sxxgwev4Efzsl7sY0sn98KvAO_wj5XBFdZ1G3GtCmRHEmzbiEWwx0iMRIT9fdjbKIBNoRuJNxAJNKgXfl3mgiF_Yfb2_uYf3lY0j3jCD6UTWhoR70Ng-GA_WpjKo22LZrf-XCQ_6crZE1qKIgMLKuexq6mjzO2V6713YJAV5GGVBxCqXHeTzz7BeZqstEqNaSN918oo"/>
+<div class="absolute bottom-8 left-8">
+<span class="bg-white/80 backdrop-blur-md px-4 py-2 rounded-full text-[10px] uppercase tracking-widest font-bold">Featured Gallery</span>
+</div>
+</div>
+<div class="mt-6 flex justify-between items-center">
+<div>
+<h2 class="text-xl font-medium tracking-tight text-primary">The Silent Valley</h2>
+<p class="text-sm text-on-surface-variant mt-1">Captured by @luna_curates</p>
+</div>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-sm text-xs uppercase tracking-widest font-bold hover:bg-primary-container transition-colors">
+                        View Collection
+                    </button>
+</div>
+</article>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 bg-white dark:bg-black tonal-shift-surface-to-surface-lowest flex justify-around items-center px-10 pb-4 z-50">
+<!-- Home (Inactive) -->
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-600 hover:text-black dark:hover:text-white transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+</a>
+<!-- Search (Active - as per top app bar "Explore") -->
+<a class="flex flex-col items-center justify-center text-black dark:text-white scale-110 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="search" style="font-variation-settings: 'FILL' 1;">search</span>
+</a>
+<!-- Add -->
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-600 hover:text-black dark:hover:text-white transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-600 hover:text-black dark:hover:text-white transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</a>
+</nav>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

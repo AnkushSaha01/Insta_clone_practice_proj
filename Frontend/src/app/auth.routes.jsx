@@ -4,6 +4,8 @@ import Register from "../features/auth/pages/Register";
 import Home from "../features/posts/pages/Home";
 import Layout from "./Layout";
 import CreatePost from "../features/posts/pages/CreatePost";
+import Search from "../features/users/pages/Search";
+
 
 const authRoutes = createBrowserRouter([
   {
@@ -21,6 +23,10 @@ const authRoutes = createBrowserRouter([
       {
         path: "create",
         element: <CreatePost />
+      },
+      {
+        path: "search",
+        element: <Search />
       }
     ],
   },

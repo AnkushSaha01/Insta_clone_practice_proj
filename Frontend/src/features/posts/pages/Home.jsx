@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import PostCard from "../components/PostCard";
 import { usePost } from "../hooks/usePosts";
 import { useSelector } from "react-redux";
+import Stories from "./Stories";
 
 const Home = () => {
   const { handleGetPosts } = usePost();
@@ -53,6 +54,8 @@ const Home = () => {
             </button>
           </div>
         </header>
+        {/* Stories */}
+        <Stories />
 
         {/* Feed */}
         <main>
