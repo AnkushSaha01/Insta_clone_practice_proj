@@ -51,5 +51,8 @@ module.exports.loginValidationRules = [
         .isString().withMessage("Password must be a string")
         .isLength({ min: 6 }).withMessage("Password must be at least 6 characters long"),
 
-    validate
+
+        validate
 ]
+
+module.exports.validate = validate;
