@@ -7,7 +7,7 @@ const { validateFollowUser } = require("../validation/user.validator.js");
 
 const router = express.Router()
 
-router.get("/search", searchUser)
+router.get("/search", authUser, searchUser)
 router.post("/follow/:userId", validateFollowUser, authUser, followUser)
 
 

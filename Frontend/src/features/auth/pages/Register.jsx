@@ -1,10 +1,23 @@
 import React from "react";
-import axios from "axios";
+import { useAuth } from "../Hooks/useAuth";
+import { useNavigate } from "react-router";
 
 const Register = () => {
+  const { handleRegister } = useAuth()
+  const navigate = useNavigate()
   const handleGoogleRegister = () => {
     window.location.href = "http://localhost:3000/api/auth/google";
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    const formDataObj = Object.fromEntries(formData.entries())
+    const data = await handleRegister(formDataObj)
+    if (data && data.success) {
+      navigate("/")
+    }
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -17,7 +30,7 @@ const Register = () => {
             Join us and start your journey today
           </p>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6" action="#" method="POST">
           <div className="space-y-4">
             <div>
               <label
