@@ -8,14 +8,14 @@ import { useEffect } from "react";
 const Notification = () => {
   // const [requests, setRequests] = useState(DUMMY_REQUESTS);
   const requests = useSelector((state) => state.notification.followReqs);
-  const { handleGetFollowReq } = useNotification();
+  const { handleGetFollowReq, handleAcceptFollowReq } = useNotification();
   useEffect(() => {
     handleGetFollowReq();
   }, []);
   const dispatch = useDispatch();
 
   const handleAccept = (id) => {
-    dispatch(acceptFollowReq(id));
+    handleAcceptFollowReq({ reqId: id });
   };
 
   const handleReject = (id) => {
@@ -47,22 +47,28 @@ const Notification = () => {
                   <span className="font-semibold text-[15px]">
                     {req.follower.username}
                   </span>
-                  <span className="text-sm text-[#5a6061]">{req.name}</span>
+                  <span className="text-sm text-[#5a6061]">{req.follower.fullname}</span>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <button
-                  onClick={() => handleAccept(req.id)}
-                  className="px-6 py-2 bg-[#2d3435] text-white text-sm font-medium rounded-md hover:bg-[#0c0f0f] active:scale-95 transition-all duration-200"
-                >
-                  Accept
-                </button>
-                <button
-                  onClick={() => handleReject(req.id)}
-                  className="px-6 py-2 bg-transparent text-[#2d3435] text-sm font-medium border border-[#adb3b4] border-opacity-50 rounded-md hover:bg-[#f2f4f4] active:scale-95 transition-all duration-200"
-                >
-                  Reject
-                </button>
+                {req.status === "pending" ? (
+                  <>
+                    <button
+                      onClick={() => handleAccept(req._id)}
+                      className="px-6 py-2 bg-[#2d3435] text-white text-sm font-medium rounded-md hover:bg-[#0c0f0f] active:scale-95 transition-all duration-200"
+                    >
+                      Accept
+                    </button>
+                    <button
+                      onClick={() => handleReject(req._id)}
+                      className="px-6 py-2 bg-transparent text-[#2d3435] text-sm font-medium border border-[#adb3b4] border-opacity-50 rounded-md hover:bg-[#f2f4f4] active:scale-95 transition-all duration-200"
+                    >
+                      Reject
+                    </button>
+                  </>
+                ) : (
+                  <span className="text-sm text-[#5a6061]">Accepted</span>
+                )}
               </div>
             </div>
           ))

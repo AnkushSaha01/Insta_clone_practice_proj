@@ -9,7 +9,7 @@ const Search = () => {
   const { handleSearchUser, handleGetCurrentUser } = useUser();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState(null)
 
 
@@ -19,9 +19,9 @@ const Search = () => {
   }
 
   const debouncedSearch = useMemo(()=>debounce((query)=>{
-        setLoading(true)
+        // setLoading(true)
         fetchSearchUserData(query)
-        setLoading(false)
+        // setLoading(false)
     },500),[]);
 
   useEffect(() => {

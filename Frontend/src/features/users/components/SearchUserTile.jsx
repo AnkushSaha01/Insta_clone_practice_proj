@@ -13,7 +13,7 @@ const SearchUserTile = ({ results, currentUser }) => {
     <div className="w-full">
       {results.map((user) => {
         return (
-          <div className="w-full animate-fade-in">
+          <div  className="w-full animate-fade-in">
             <div className="flex items-center justify-between p-6 bg-[#ffffff] rounded-xl hover:shadow-[0px_12px_40px_rgba(0,0,0,0.04)] transition-all duration-300">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-full overflow-hidden bg-[#e8e8e8] border-2 border-[#ffffff]">

@@ -178,4 +178,26 @@ const getFollowReq = async (req, res) => {
   });
 };
 
-module.exports = { searchUser, followUser, getFollowReq };
+const acceptFollowReq = async (req, res) => {
+  const { reqId } = req.params;
+  const isReqExist = await followModel.findById(reqId);
+
+  if (!isReqExist) {
+    return res.status(404).json({
+      message: "Request not found",
+      success: false,
+    });
+  }
+
+  const followReq = await followModel.findByIdAndUpdate(reqId, {
+    status: "accepted",
+  });
+
+  return res.status(200).json({
+    message: "Follow request accepted successfully",
+    success: true,
+    followReq,
+  });
+};
+
+module.exports = { searchUser, followUser, getFollowReq, acceptFollowReq };
