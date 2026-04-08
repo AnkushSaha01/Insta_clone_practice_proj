@@ -6,10 +6,12 @@ import { useMemo } from "react";
 import SearchUserTile from "../components/SearchUserTile";
 
 const Search = () => {
-  const { handleSearchUser } = useUser();
+  const { handleSearchUser, handleGetCurrentUser } = useUser();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null)
+
 
   async function fetchSearchUserData(query) {
     const users = await handleSearchUser({ query });
@@ -28,6 +30,14 @@ const Search = () => {
     }
     debouncedSearch(query);
   }, [query]);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const currentUser = await handleGetCurrentUser();
+      setCurrentUser(currentUser);
+    };
+    fetchUser();
+  }, []);
 
   return (
     <div className="max-w-2xl mx-auto flex flex-col items-center pt-10">
@@ -61,7 +71,7 @@ const Search = () => {
       </div>
 
       {/* Single Result Canvas */}
-      <SearchUserTile results={results} />  
+      <SearchUserTile results={results} currentUser={currentUser}/>  
     </div>
   );
 };

@@ -2,13 +2,13 @@ import React from "react";
 import { useUser } from "../hooks/useUser";
 import { useSelector } from "react-redux";
 
-const SearchUserTile = ({results}) => {
-    const {handleFollowUser} = useUser()
-    const requested = useSelector(state => state.user.requested)
+const SearchUserTile = ({ results, currentUser }) => {
+  const { handleFollowUser } = useUser();
+  const requested = useSelector((state) => state.user.requested);
 
-    const handleClick = async (userId) => {
-        await handleFollowUser({ userId })
-    }
+  const handleClick = async (userId) => {
+    await handleFollowUser({ userId });
+  };
   return (
     <div className="w-full">
       {results.map((user) => {
@@ -32,9 +32,19 @@ const SearchUserTile = ({results}) => {
                   </span>
                 </div>
               </div>
-              <button disabled={requested.includes(user._id)} onClick={() => handleClick(user._id)} className="bg-[#000000] text-[#e2e2e2] px-6 py-2 rounded-lg text-sm font-medium hover:opacity-90 active:scale-95 transition-all">
-                {user.followStatus === "pending" ? "Requested" : "Follow"}
-              </button>
+              {user.username !== currentUser.username && (
+                <button
+                  disabled={user.followStatus}
+                  onClick={() => handleClick(user._id)}
+                  className="bg-[#000000] text-[#e2e2e2] px-6 py-2 rounded-lg text-sm font-medium hover:opacity-90 active:scale-95 transition-all"
+                >
+                  {user.followStatus === null
+                    ? "Follow"
+                    : user.followStatus === "requested"
+                      ? "Requested"
+                      : "Following"}
+                </button>
+              )}
             </div>
           </div>
         );

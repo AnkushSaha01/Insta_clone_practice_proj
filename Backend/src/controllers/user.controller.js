@@ -23,25 +23,61 @@ const searchUser = async (req, res) => {
       {
         $lookup: {
           from: "follows",
-          localField: "_id",
-          foreignField: "followee",
-          as: "followStatus",
+          as: "followDoc",
+          let: { searchUser: "$_id" },
+          pipeline: [
+            {
+              $match: {
+                $expr: {
+                  $and: [
+                    {
+                      $eq: ["$followee", "$$searchUser"],
+                    },
+                    {
+                      $eq: [
+                        "$follower",
+                        new mongoose.Types.ObjectId(req.user.id),
+                      ],
+                    },
+                  ],
+                },
+              },
+            },
+          ],
         },
       },
-      { $unwind: { path: "$followStatus", preserveNullAndEmptyArrays: true } },
       {
-        $match: {
-          "followStatus.follower": new mongoose.Types.ObjectId(req.user.id),
+        $addFields: {
+          followStatus: {
+            $cond: {
+              if: {
+                $lt: [{ $size: "$followDoc" }, 1],
+              },
+              then: null,
+              else: {
+                $cond: {
+                  if: {
+                    $eq: [
+                      {
+                        $arrayElemAt: ["$followDoc.status", 0],
+                      },
+                      "pending",
+                    ],
+                  },
+                  then: "requested",
+                  else: "following",
+                },
+              },
+            },
+          },
         },
       },
-
       {
         $project: {
           username: "$username",
           fullname: "$fullname",
-          email: "$email",
-          profilePicture:"$profilePicture",
-          followStatus: "$followStatus.status",
+          profilePicture: "$profilePicture",
+          followStatus: "$followStatus",
         },
       },
     ],
@@ -97,4 +133,49 @@ const followUser = async (req, res) => {
   });
 };
 
-module.exports = { searchUser, followUser };
+const getFollowReq = async (req, res) => {
+  const currentUserId = req.user.id;
+  const isUserExist = await userModel.findById(currentUserId);
+
+  if (!isUserExist) {
+    return res.status(404).json({
+      message: "User not found",
+      success: false,
+    });
+  }
+
+  const follow = await followModel.aggregate(
+  [
+    {
+      $match: {
+        followee: new mongoose.Types.ObjectId(currentUserId)
+      }
+    },
+    {
+      $project: {
+        follower: '$follower',
+        status: '$status'
+      }
+    },
+    {
+      $lookup: {
+        from: 'users',
+        localField: 'follower',
+        foreignField: '_id',
+        as: 'follower'
+      }
+    },
+    { $unwind: { path: '$follower' } }
+  ],
+  { maxTimeMS: 60000, allowDiskUse: true }
+);
+  
+
+  return res.status(200).json({
+    message: "Follow requests fetched successfully",
+    success: true,
+    follow,
+  });
+};
+
+module.exports = { searchUser, followUser, getFollowReq };

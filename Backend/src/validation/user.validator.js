@@ -8,4 +8,11 @@ const validateFollowUser = [
     validate
 ]
 
-module.exports = { validateFollowUser };
+const validateFollowReq = [
+    param("userId")
+        .notEmpty().withMessage("User ID is required")
+        .isMongoId().withMessage("Invalid User ID format"),
+    validate
+]
+
+module.exports = { validateFollowUser, validateFollowReq };
