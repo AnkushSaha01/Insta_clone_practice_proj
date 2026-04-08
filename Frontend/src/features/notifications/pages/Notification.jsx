@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNotification } from "../hooks/useNotification";
 import { useEffect } from "react";
 
@@ -8,18 +8,17 @@ import { useEffect } from "react";
 const Notification = () => {
   // const [requests, setRequests] = useState(DUMMY_REQUESTS);
   const requests = useSelector((state) => state.notification.followReqs);
-  const { handleGetFollowReq, handleAcceptFollowReq } = useNotification();
+  const { handleGetFollowReq, handleAcceptFollowReq, handleRejectFollowReq } = useNotification();
   useEffect(() => {
     handleGetFollowReq();
   }, []);
-  const dispatch = useDispatch();
 
   const handleAccept = (id) => {
     handleAcceptFollowReq({ reqId: id });
   };
 
   const handleReject = (id) => {
-    dispatch(rejectFollowReq(id));
+    handleRejectFollowReq({ reqId: id });
   };
 
   return (

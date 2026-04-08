@@ -1,4 +1,4 @@
-import { getFollowReq, acceptFollowReq } from "../service/notification.api";
+import { getFollowReq, acceptFollowReq, rejectFollowReq } from "../service/notification.api";
 import { useDispatch } from "react-redux";
 import { setFollowReqs } from "../notification.slice";
 
@@ -12,8 +12,13 @@ export const useNotification = () => {
         await acceptFollowReq({ reqId });
         handleGetFollowReq();
     }
+    async function handleRejectFollowReq({ reqId }) {
+        await rejectFollowReq({ reqId });
+        handleGetFollowReq();
+    }
     return {
         handleGetFollowReq,
-        handleAcceptFollowReq
+        handleAcceptFollowReq,
+        handleRejectFollowReq
     }
 }

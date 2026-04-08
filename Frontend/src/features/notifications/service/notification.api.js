@@ -17,3 +17,11 @@ export const acceptFollowReq = async ({ reqId }) => {
     console.log(response.data);
     return response.data;
 };
+
+export const rejectFollowReq = async ({ reqId }) => {
+    const response = await axios.delete(`http://localhost:3000/api/users/followReq/${reqId}`, {
+      withCredentials: true,
+    });
+    console.log(response.data);
+    return response.data;
+};
