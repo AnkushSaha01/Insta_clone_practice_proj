@@ -300,11 +300,13 @@ const getProfileData = async (req, res) => {
     ],
     { maxTimeMS: 60000, allowDiskUse: true },
   );
+  
 
   return res.status(200).json({
     message: "Profile data fetched successfully",
     success: true,
     profileData,
+    
   });
 };
 
