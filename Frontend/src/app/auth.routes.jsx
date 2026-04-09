@@ -6,6 +6,7 @@ import Layout from "./Layout";
 import CreatePost from "../features/posts/pages/CreatePost";
 import Search from "../features/users/pages/Search";
 import Notification from "../features/notifications/pages/Notification";
+import Profile from "../features/profile/pages/Profile";
 
 
 const authRoutes = createBrowserRouter([
@@ -32,6 +33,10 @@ const authRoutes = createBrowserRouter([
       {
         path: "notifications",
         element: <Notification />
+      },
+      {
+        path: "profile",
+        element: <Profile />
       }
     ],
   },

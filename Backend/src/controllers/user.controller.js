@@ -145,31 +145,30 @@ const getFollowReq = async (req, res) => {
   }
 
   const follow = await followModel.aggregate(
-  [
-    {
-      $match: {
-        followee: new mongoose.Types.ObjectId(currentUserId)
-      }
-    },
-    {
-      $project: {
-        follower: '$follower',
-        status: '$status'
-      }
-    },
-    {
-      $lookup: {
-        from: 'users',
-        localField: 'follower',
-        foreignField: '_id',
-        as: 'follower'
-      }
-    },
-    { $unwind: { path: '$follower' } }
-  ],
-  { maxTimeMS: 60000, allowDiskUse: true }
-);
-  
+    [
+      {
+        $match: {
+          followee: new mongoose.Types.ObjectId(currentUserId),
+        },
+      },
+      {
+        $project: {
+          follower: "$follower",
+          status: "$status",
+        },
+      },
+      {
+        $lookup: {
+          from: "users",
+          localField: "follower",
+          foreignField: "_id",
+          as: "follower",
+        },
+      },
+      { $unwind: { path: "$follower" } },
+    ],
+    { maxTimeMS: 60000, allowDiskUse: true },
+  );
 
   return res.status(200).json({
     message: "Follow requests fetched successfully",
@@ -200,7 +199,7 @@ const acceptFollowReq = async (req, res) => {
   });
 };
 
-const rejectFollowReq = async(req, res)=>{
+const rejectFollowReq = async (req, res) => {
   const { reqId } = req.params;
   const isReqExist = await followModel.findById(reqId);
 
@@ -218,6 +217,102 @@ const rejectFollowReq = async(req, res)=>{
     success: true,
     followReq,
   });
-}
+};
 
-module.exports = { searchUser, followUser, getFollowReq, acceptFollowReq, rejectFollowReq };
+const getProfileData = async (req, res) => {
+  const currentUserId = req.user.id;
+  const isUserExist = await userModel.findById(currentUserId);
+
+  if (!isUserExist) {
+    return res.status(404).json({
+      message: "User not found",
+      success: false,
+    });
+  }
+
+  const profileData = await userModel.aggregate(
+    [
+      {
+        $match: {
+          _id: new mongoose.Types.ObjectId(currentUserId),
+        },
+      },
+      {
+        $lookup: {
+          from: "posts",
+          localField: "_id",
+          foreignField: "author",
+          as: "posts",
+        },
+      },
+      {
+        $lookup: {
+          from: "follows",
+          as: "following",
+          let: { searchUser: "$_id" },
+          pipeline: [
+            {
+              $match: {
+                $expr: {
+                  $and: [
+                    {
+                      $eq: ["$follower", "$$searchUser"],
+                    },
+                    { $eq: ["$status", "accepted"] },
+                  ],
+                },
+              },
+            },
+          ],
+        },
+      },
+      {
+        $lookup: {
+          from: "follows",
+          as: "followers",
+          let: { searchUser: "$_id" },
+          pipeline: [
+            {
+              $match: {
+                $expr: {
+                  $and: [
+                    {
+                      $eq: ["$followee", "$$searchUser"],
+                    },
+                    { $eq: ["$status", "accepted"] },
+                  ],
+                },
+              },
+            },
+          ],
+        },
+      },
+      {
+        $project: {
+          username: "$username",
+          profilePicture: "$profilePicture",
+          fullname: "$fullname",
+          posts: "$posts",
+          following: "$following",
+          followers: "$followers",
+        },
+      },
+    ],
+    { maxTimeMS: 60000, allowDiskUse: true },
+  );
+
+  return res.status(200).json({
+    message: "Profile data fetched successfully",
+    success: true,
+    profileData,
+  });
+};
+
+module.exports = {
+  searchUser,
+  followUser,
+  getFollowReq,
+  acceptFollowReq,
+  rejectFollowReq,
+  getProfileData,
+};
