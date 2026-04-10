@@ -310,6 +310,52 @@ const getProfileData = async (req, res) => {
   });
 };
 
+const getFollowers = async (req, res)=>{
+  const currentUserId = req.user.id;
+  const isUserExist = await userModel.findById(currentUserId);
+
+  if (!isUserExist) {
+    return res.status(404).json({
+      message: "User not found",
+      success: false,
+    });
+  }
+
+  const followers = await followModel.find({
+    followee: currentUserId,
+    status: "accepted",
+  }).populate("follower", "username profilePicture fullname");
+
+  return res.status(200).json({
+    message: "Followers fetched successfully",
+    success: true,
+    followers,
+  });
+}
+
+const getFollowing = async (req, res)=>{
+  const currentUserId = req.user.id;
+  const isUserExist = await userModel.findById(currentUserId);
+
+  if (!isUserExist) {
+    return res.status(404).json({
+      message: "User not found",
+      success: false,
+    });
+  }
+
+  const following = await followModel.find({
+    follower: currentUserId,
+    status: "accepted",
+  }).populate("followee", "username profilePicture fullname");
+
+  return res.status(200).json({
+    message: "Following fetched successfully",
+    success: true,
+    following,
+  });
+}
+
 module.exports = {
   searchUser,
   followUser,
@@ -317,4 +363,6 @@ module.exports = {
   acceptFollowReq,
   rejectFollowReq,
   getProfileData,
+  getFollowers,
+  getFollowing,
 };

@@ -10,12 +10,14 @@ import {
 } from "lucide-react";
 import useProfile from "../hooks/useProfile";
 import FollowersPopup from "../components/FollowersPopup";
+import FollowingPopup from "../components/FollowingPopup";
 
 const Profile = () => {
   // const user = useSelector((state) => state.auth.user);
   const profile = useSelector((state) => state.profile.profile);
   const [activeTab, setActiveTab] = useState("posts");
   const [showFollowers, setShowFollowers] = useState(false);
+  const [showFollowing, setShowFollowing] = useState(false);
   const { getProfile } = useProfile();
   useEffect(() => {
     async function fetchProfile() {
@@ -78,7 +80,8 @@ const Profile = () => {
               <span className="font-semibold">{profile?.followers?.length}</span>{" "}
               <span className="text-gray-600 md:text-gray-900">followers</span>
             </div>
-            <div className="flex flex-col md:flex-row items-center md:gap-1 text-sm md:text-base cursor-pointer">
+            <div className="flex flex-col md:flex-row items-center md:gap-1 text-sm md:text-base cursor-pointer"
+            onClick={() => setShowFollowing(true)}>
               <span className="font-semibold">{profile?.following?.length}</span>{" "}
               <span className="text-gray-600 md:text-gray-900">following</span>
             </div>
@@ -200,7 +203,13 @@ const Profile = () => {
       <FollowersPopup 
         isOpen={showFollowers} 
         onClose={() => setShowFollowers(false)} 
-        followers={profile?.followers || []} 
+        // followers={profile?.followers || []} 
+      />
+      {/* Following Popup */}
+      <FollowingPopup 
+        isOpen={showFollowing} 
+        onClose={() => setShowFollowing(false)} 
+        // following={profile?.following || []} 
       />
     </div>
   );

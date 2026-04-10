@@ -3,12 +3,12 @@ import { X } from "lucide-react";
 import { useSelector } from "react-redux";
 import useProfile from "../hooks/useProfile";
 
-const FollowersPopup = ({ isOpen, onClose }) => {
-  const followers = useSelector((state) => state.profile.followers);
-  const {getFollowers} = useProfile();
+const FollowingPopup   = ({ isOpen, onClose }) => {
+  const following = useSelector((state) => state.profile.following);
+  const {getFollowing} = useProfile();
   useEffect(() => {
     if (isOpen) {
-      getFollowers();
+      getFollowing();
     }
   }, [isOpen]);
 
@@ -19,7 +19,7 @@ const FollowersPopup = ({ isOpen, onClose }) => {
       <div className="bg-white rounded-xl w-full max-w-sm overflow-hidden flex flex-col shadow-2xl animate-in zoom-in-95 duration-200">
         {/* Header */}
         <div className="relative flex items-center justify-center px-4 py-3 border-b border-gray-200">
-          <h2 className="text-base font-semibold text-gray-900">Followers</h2>
+          <h2 className="text-base font-semibold text-gray-900">Following</h2>
           <button
             onClick={onClose}
             className="absolute right-4 p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 rounded-full transition-colors"
@@ -30,19 +30,19 @@ const FollowersPopup = ({ isOpen, onClose }) => {
 
         {/* Followers List */}
         <div className="max-h-[60vh] overflow-y-auto w-full custom-scrollbar">
-          {followers && followers.length > 0 ? (
+          {following && following.length > 0 ? (
             <div className="p-2 w-full">
-              {followers.map((followerItem, index) => {
+              {following.map((followingItem, index) => {
                 // Handle cases where the backend sends raw follow objects (unpopulated) 
                 // vs fully populated follower objects.
-                const userObj = followerItem?.follower || followerItem;
+                const userObj = followingItem?.followee || followingItem;
                 const profilePic = userObj?.profilePicture || "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80";
-                const username = userObj?.username || `follower_${index}`;
+                const username = userObj?.username || `following_${index}`;
                 const fullname = userObj?.fullname || "";
 
                 return (
                   <div
-                    key={followerItem._id || index}
+                    key={followingItem._id || index}
                     className="flex items-center justify-between p-2 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer group"
                   >
                     <div className="flex items-center gap-3">
@@ -87,7 +87,7 @@ const FollowersPopup = ({ isOpen, onClose }) => {
                 </svg>
               </div>
               <span className="text-lg font-bold text-gray-900 mb-1">
-                Followers
+                Following
               </span>
               <span className="text-sm text-gray-500">
                 You'll see all people who follow you here.
@@ -100,4 +100,4 @@ const FollowersPopup = ({ isOpen, onClose }) => {
   );
 };
 
-export default FollowersPopup;
+export default FollowingPopup;

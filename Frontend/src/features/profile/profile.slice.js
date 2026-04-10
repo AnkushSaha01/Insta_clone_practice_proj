@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     profile: {},
+    followers: [],
+    following: [],
     loading: false,
     error: null,
 }
@@ -13,6 +15,12 @@ const profileSlice = createSlice({
         setProfile: (state, action) => {
             state.profile = action.payload;
         },
+        setFollowers: (state, action) => {
+            state.followers = action.payload;
+        },
+        setFollowing: (state, action) => {
+            state.following = action.payload;
+        },
         setLoading: (state, action) => {
             state.loading = action.payload;
         },
@@ -22,5 +30,5 @@ const profileSlice = createSlice({
     },
 });
 
-export const { setProfile, setLoading, setError } = profileSlice.actions;
+export const { setProfile, setFollowers, setFollowing, setLoading, setError } = profileSlice.actions;
 export default profileSlice.reducer;
