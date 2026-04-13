@@ -10,6 +10,7 @@ const storyRouter = require("./routes/story.route.js");
 const cors = require("cors");
 
 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
