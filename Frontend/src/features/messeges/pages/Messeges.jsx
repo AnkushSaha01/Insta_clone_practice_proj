@@ -6,11 +6,11 @@ import {
   Video,
   Info,
   Image as ImageIcon,
-  Heart,
   Smile,
   Send,
 } from "lucide-react";
 import { io } from "socket.io-client";
+
 
 const URL = "http://localhost:3000";
 
