@@ -7,6 +7,7 @@ import CreatePost from "../features/posts/pages/CreatePost";
 import Search from "../features/users/pages/Search";
 import Notification from "../features/notifications/pages/Notification";
 import Profile from "../features/profile/pages/Profile";
+import Messeges from "../features/messeges/pages/Messeges";
 
 
 const authRoutes = createBrowserRouter([
@@ -37,6 +38,10 @@ const authRoutes = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />
+      },
+      {
+        path: "messages",
+        element: <Messeges />
       }
     ],
   },

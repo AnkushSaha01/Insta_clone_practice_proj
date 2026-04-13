@@ -356,6 +356,87 @@ const getFollowing = async (req, res)=>{
   });
 }
 
+const getMessages = async (req, res)=>{
+  const currentUserId = req.user.id;
+  const isUserExist = await userModel.findById(currentUserId);
+
+  if (!isUserExist) {
+    return res.status(404).json({
+      message: "User not found",
+      success: false,
+    });
+  }
+
+  const messages = await followModel.aggregate(
+  [
+    {
+      $match: {
+        $or: [
+          { followee: new mongoose.Types.ObjectId(currentUserId) },
+          { follower: new mongoose.Types.ObjectId(currentUserId) }
+        ],
+        status: 'accepted'
+      }
+    },
+    {
+      $addFields: {
+        user: {
+          $cond: {
+            if: {
+              $eq: ['$follower', new mongoose.Types.ObjectId(currentUserId)]
+            },
+            then: '$followee',
+            else: '$follower'
+          }
+        }
+      }
+    },
+    { $project: { user: 1 } },
+    {
+      $group: {
+        _id: '$user',
+        user: { $first: '$$ROOT' }
+      }
+    },
+    {
+      $project: {
+        _id: '$user._id',
+        user: '$user.user'
+      }
+    },
+    {
+      $lookup: {
+        from: 'users',
+        localField: 'user',
+        foreignField: '_id',
+        as: 'user'
+      }
+    },
+    {
+      $unwind: {
+        path: '$user',
+        preserveNullAndEmptyArrays: true
+      }
+    },
+    {
+      $project: {
+        _id: '$user._id',
+        username: '$user.username',
+        profilePicture: '$user.profilePicture'
+      }
+    }
+  ],
+  { maxTimeMS: 60000, allowDiskUse: true }
+);
+
+
+  return res.status(200).json({
+    message: "Messages fetched successfully",
+    success: true,
+    messages,
+  });
+}
+
 module.exports = {
   searchUser,
   followUser,
@@ -365,4 +446,5 @@ module.exports = {
   getProfileData,
   getFollowers,
   getFollowing,
+  getMessages,
 };

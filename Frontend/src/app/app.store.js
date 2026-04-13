@@ -5,6 +5,7 @@ import storyReducer from '../features/posts/story.slice'
 import userReducer from '../features/users/user.slice'
 import notificationReducer from '../features/notifications/notification.slice'
 import profileReducer from '../features/profile/profile.slice'
+import messegesReducer from '../features/messeges/messeges.slice'
   
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     story: storyReducer,
     user: userReducer,
     notification: notificationReducer,
-    profile: profileReducer
+    profile: profileReducer,
+    messeges: messegesReducer,
   },
 })

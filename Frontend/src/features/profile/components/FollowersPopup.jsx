@@ -32,6 +32,8 @@ const FollowersPopup = ({ isOpen, onClose }) => {
         <div className="max-h-[60vh] overflow-y-auto w-full custom-scrollbar">
           {followers && followers.length > 0 ? (
             <div className="p-2 w-full">
+
+              
               {followers.map((followerItem, index) => {
                 // Handle cases where the backend sends raw follow objects (unpopulated) 
                 // vs fully populated follower objects.

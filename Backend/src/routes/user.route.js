@@ -1,5 +1,5 @@
 const express = require("express");
-const { searchUser, followUser, getFollowReq, acceptFollowReq, rejectFollowReq, getProfileData, getFollowers, getFollowing } = require("../controllers/user.controller.js");
+const { searchUser, followUser, getFollowReq, acceptFollowReq, rejectFollowReq, getProfileData, getFollowers, getFollowing, getMessages } = require("../controllers/user.controller.js");
 const authUser = require("../middlewares/auth.middleware.js");
 const { validateFollowUser } = require("../validation/user.validator.js");
 
@@ -15,6 +15,7 @@ router.delete("/followReq/:reqId", authUser, rejectFollowReq)
 router.get("/profile", authUser, getProfileData)
 router.get("/followers", authUser, getFollowers)
 router.get("/following", authUser, getFollowing)
+router.get("/messages", authUser, getMessages)
 
 
 module.exports = router;
