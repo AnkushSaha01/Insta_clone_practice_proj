@@ -1,21 +1,25 @@
 import { useDispatch } from "react-redux";
-import getMessages from "../service/messeges.api";
-import { setMessages, setCurrentChatId } from "../messeges.slice";
+import getChats from "../service/messeges.api";
+import { setChats, setCurrentChatId, appendMessage } from "../messeges.slice";
 
 const useMesseges = () => {
     const dispatch = useDispatch();
 
-    const handleGetMessages = async () => {
-        const response = await getMessages();
-        dispatch(setMessages(response));
+    const handleGetChats = async () => {
+        const response = await getChats();
+        dispatch(setChats(response));
     }
     function handleSetCurrentChatId(userId) {
         dispatch(setCurrentChatId(userId))
     }
+    function handleAppendMessage({ message, receiverId, senderId, currentChatId }) {
+        dispatch(appendMessage({ message, receiverId, senderId, currentChatId }))
+    }
 
     return {
-        handleGetMessages,
-        handleSetCurrentChatId
+        handleGetChats,
+        handleSetCurrentChatId,
+        handleAppendMessage
     }
 }
 

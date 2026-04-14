@@ -10,32 +10,65 @@ import {
   Send,
 } from "lucide-react";
 import { io } from "socket.io-client";
-
+import { useAuth } from "../../auth/Hooks/useAuth";
 
 const URL = "http://localhost:3000";
 
 const Messeges = () => {
-  const messages = useSelector((state) => state.messeges.messages);
+  const chats = useSelector((state) => state.messeges.chats);
   const currentChatId = useSelector((store) => store.messeges.currentChatId);
-  const { handleGetMessages, handleSetCurrentChatId } = useMesseges();
+  const loggedInUser = useSelector((store) => store.auth.user);
+  const { handleGetChats, handleSetCurrentChatId, handleAppendMessage } =
+    useMesseges();
+  const { handleGetMe } = useAuth();
   const [selectedUser, setSelectedUser] = useState(null);
   const [message, setMessage] = useState("");
   const socketRef = useRef(null);
 
   console.log("currentChatId", currentChatId);
+
   function handleSendMessage() {
     socketRef.current.emit("send_message", {
       message,
+      receiver: currentChatId,
+    });
+    handleAppendMessage({
+      message,
+      receiverId: currentChatId,
+      senderId: loggedInUser.id,
+      currentChatId: currentChatId,
     });
   }
 
   useEffect(() => {
-    const socket = io(URL);
+    handleGetMe();
+    handleGetChats();
+  }, []); // Run only once when the component mounts
+
+  useEffect(() => {
+    const socket = io(URL, { withCredentials: true });
     socketRef.current = socket;
-    handleGetMessages();
+
+    socket.once("connect", () => {
+      console.log("Connected to socket");
+    });
+
+    socket.on("connect_error", (data) => {
+      console.log(data);
+    });
+
+    socket.on("receive_message", (data) => {
+      handleAppendMessage({
+        message: data.message,
+        receiverId: data.receiver,
+        senderId: data.sender,
+        currentChatId: data.sender,
+      });
+    });
 
     return () => {
       socket.disconnect();
+      socketRef.current = null;
     };
   }, []);
 
@@ -88,8 +121,8 @@ const Messeges = () => {
 
         {/* Users List */}
         <div className="flex-1 overflow-y-auto pt-2">
-          {messages &&
-            messages.map((user) => (
+          {chats &&
+            chats.map((user) => (
               <div
                 key={user._id}
                 onClick={() => {
@@ -116,7 +149,7 @@ const Messeges = () => {
                 </div>
               </div>
             ))}
-          {(!messages || messages.length === 0) && (
+          {(!chats || chats.length === 0) && (
             <div className="text-center text-gray-500 mt-10 text-sm">
               No messages yet.
             </div>
@@ -164,7 +197,7 @@ const Messeges = () => {
 
             {/* Chat Area */}
             <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-4">
-              <div className="flex flex-col items-center justify-center py-10 text-gray-500">
+              <div className="flex flex-col items-center justify-center py-10 text-gray-500 border-b border-gray-100 pb-10 mb-4 shrink-0">
                 <img
                   src={
                     selectedUser.profilePicture ||
@@ -181,6 +214,44 @@ const Messeges = () => {
                   View Profile
                 </button>
               </div>
+
+              {/* Messages Iteration */}
+              {chats
+                .find((c) => c._id === selectedUser._id)
+                ?.messages.map((msg, index) => {
+                  const isSentByMe =
+                    msg.sender === loggedInUser.id ||
+                    msg.sender === loggedInUser._id;
+
+                  return (
+                    <div
+                      key={index}
+                      className={`flex w-full ${
+                        isSentByMe ? "justify-end" : "justify-start"
+                      }`}
+                    >
+                      {!isSentByMe && (
+                        <img
+                          src={
+                            selectedUser.profilePicture ||
+                            "https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg"
+                          }
+                          alt="profile"
+                          className="w-7 h-7 rounded-full mr-2 self-end mb-1"
+                        />
+                      )}
+                      <div
+                        className={`px-4 py-2 text-[15px] max-w-[70%] break-words shadow-sm ${
+                          isSentByMe
+                            ? "bg-[#0095f6] text-white rounded-2xl rounded-br-sm"
+                            : "bg-gray-100 text-black rounded-2xl rounded-bl-sm"
+                        }`}
+                      >
+                        {msg.message}
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
 
             {/* Message Input */}

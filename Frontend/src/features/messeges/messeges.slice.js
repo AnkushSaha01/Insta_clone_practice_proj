@@ -1,22 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    messages: [],
-    currentChatId: null
-}
+  chats: [],
+  currentChatId: null,
+};
 
 const messegesSlice = createSlice({
-    name: "messeges",
-    initialState,
-    reducers: {
-        setMessages: (state, actions) => {
-            state.messages = actions.payload;
-        },
-        setCurrentChatId: (state, action) => {
-            state.currentChatId = action.payload
-        }
-    }
-})
+  name: "messeges",
+  initialState,
+  reducers: {
+    setChats: (state, actions) => {
+      const users = actions.payload;
+      state.chats = users.map(user => ({ ...user, messages: [] }));
+    },
+    setCurrentChatId: (state, action) => {
+      state.currentChatId = action.payload;
+    },
+    appendMessage: (state, action) => {
+      const { message, receiverId, senderId, currentChatId } = action.payload;
 
-export const { setMessages, setCurrentChatId } = messegesSlice.actions;
+      const chat = state.chats.find(c => c._id === currentChatId);
+      if (chat) {
+        chat.messages.push({
+          message,
+          receiver: receiverId,
+          sender: senderId,
+        });
+      }
+    },
+  },
+});
+
+export const { setChats, setCurrentChatId, appendMessage } =
+  messegesSlice.actions;
 export default messegesSlice.reducer;
