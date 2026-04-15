@@ -2,6 +2,7 @@ const { Server } = require("socket.io");
 const jwt = require("jsonwebtoken");
 const cookie = require("cookie");
 const config = require("../config/config");
+const chatModel = require("../models/chat.model");
 
 const initSocket = (httpServer) => {
   const io = new Server(httpServer, {
@@ -35,12 +36,18 @@ const initSocket = (httpServer) => {
     console.log("A user connected:", socket.id);
     socket.join(socket.user.id);
 
-    socket.on("send_message", (data) => {
+    socket.on("send_message", async (data) => {
       const { message, receiver } = data;
       io.to(receiver).emit("receive_message", {
         message,
         sender: socket.user.id,
         // receiver,
+      });
+      await chatModel.create({
+          
+        message,
+        sender: socket.user.id,
+        receiver,
       });
     });
 

@@ -11,7 +11,7 @@ const messegesSlice = createSlice({
   reducers: {
     setChats: (state, actions) => {
       const users = actions.payload;
-      state.chats = users.map(user => ({ ...user, messages: [] }));
+      state.chats = users.map((user) => ({ ...user, messages: [] }));
     },
     setCurrentChatId: (state, action) => {
       state.currentChatId = action.payload;
@@ -19,7 +19,7 @@ const messegesSlice = createSlice({
     appendMessage: (state, action) => {
       const { message, receiverId, senderId, currentChatId } = action.payload;
 
-      const chat = state.chats.find(c => c._id === currentChatId);
+      const chat = state.chats.find((c) => c._id === currentChatId);
       if (chat) {
         chat.messages.push({
           message,
@@ -28,9 +28,16 @@ const messegesSlice = createSlice({
         });
       }
     },
+    setMessages: (state, action) => {
+      const { message, currentChatId } = action.payload;
+      const chat = state.chats.find((c) => c._id === currentChatId);
+      if (chat) {
+        chat.messages = message;
+      }
+    },
   },
 });
 
-export const { setChats, setCurrentChatId, appendMessage } =
+export const { setChats, setCurrentChatId, appendMessage, setMessages } =
   messegesSlice.actions;
 export default messegesSlice.reducer;
