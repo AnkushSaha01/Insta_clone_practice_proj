@@ -34,7 +34,7 @@ const Profile = () => {
       {/* Header section */}
       <div className="flex flex-col md:flex-row items-center md:items-start md:gap-12 gap-6 mb-10">
         {/* Profile Picture */}
-        <div className="flex-shrink-0 mx-auto md:mx-0">
+        <div className="shrink-0 mx-auto md:mx-0">
           <div className="w-32 h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full overflow-hidden border-2 border-gray-200 p-1">
             <img
               src={
@@ -114,21 +114,21 @@ const Profile = () => {
         <div className="flex justify-center gap-12 text-[13px] font-semibold tracking-widest uppercase text-gray-500">
           <button
             onClick={() => setActiveTab("posts")}
-            className={`flex items-center gap-2 py-4 border-t-2 transition-colors -mt-[1px] ${activeTab === "posts" ? "border-gray-900 text-gray-900" : "border-transparent hover:text-gray-900"}`}
+            className={`flex items-center gap-2 py-4 border-t-2 transition-colors -mt-1 ${activeTab === "posts" ? "border-gray-900 text-gray-900" : "border-transparent hover:text-gray-900"}`}
           >
             <Grid size={13} strokeWidth={2} />
             <span className="hidden md:inline">Posts</span>
           </button>
           <button
             onClick={() => setActiveTab("saved")}
-            className={`flex items-center gap-2 py-4 border-t-2 transition-colors -mt-[1px] ${activeTab === "saved" ? "border-gray-900 text-gray-900" : "border-transparent hover:text-gray-900"}`}
+            className={`flex items-center gap-2 py-4 border-t-2 transition-colors -mt-1 ${activeTab === "saved" ? "border-gray-900 text-gray-900" : "border-transparent hover:text-gray-900"}`}
           >
             <Bookmark size={13} strokeWidth={2} />
             <span className="hidden md:inline">Saved</span>
           </button>
           <button
             onClick={() => setActiveTab("tagged")}
-            className={`flex items-center gap-2 py-4 border-t-2 transition-colors -mt-[1px] ${activeTab === "tagged" ? "border-gray-900 text-gray-900" : "border-transparent hover:text-gray-900"}`}
+            className={`flex items-center gap-2 py-4 border-t-2 transition-colors -mt-1 ${activeTab === "tagged" ? "border-gray-900 text-gray-900" : "border-transparent hover:text-gray-900"}`}
           >
             <UserSquare size={13} strokeWidth={2} />
             <span className="hidden md:inline">Tagged</span>

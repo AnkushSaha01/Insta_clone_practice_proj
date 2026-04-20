@@ -241,7 +241,7 @@ const Messeges = () => {
                         />
                       )}
                       <div
-                        className={`px-4 py-2 text-[15px] max-w-[70%] break-words shadow-sm ${
+                        className={`px-4 py-2 text-[15px] max-w-[70%] wrap-break-word shadow-sm ${
                           isSentByMe
                             ? "bg-[#0095f6] text-white rounded-2xl rounded-br-sm"
                             : "bg-gray-100 text-black rounded-2xl rounded-bl-sm"
