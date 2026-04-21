@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const getChats = async () => {
-  const response = await axios.get("http://localhost:3000/api/users/messages", {
+  const response = await axios.get("/api/users/messages", {
     withCredentials: true,
   });
   // console.log("response", response.data.messages);
@@ -10,7 +10,7 @@ const getChats = async () => {
 
 const getChatMessages = async (userId) => {
   const response = await axios.get(
-    "http://localhost:3000/api/users/messages/" + userId,
+    "/api/users/messages/" + userId,
     {
       withCredentials: true,
     },

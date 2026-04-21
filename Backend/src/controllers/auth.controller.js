@@ -128,7 +128,7 @@ const googleAuthCallback = (req, res) => {
 
 
   // Redirect to frontend
-  res.redirect(`http://localhost:5173/home`);
+  res.redirect(`http://localhost:3000/home`);
 };
 
 module.exports = { registerController, login, getMe, googleAuthCallback };

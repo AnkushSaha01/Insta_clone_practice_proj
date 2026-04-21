@@ -9,17 +9,18 @@ const userRouter = require("./routes/user.route.js");
 const storyRouter = require("./routes/story.route.js");
 const cors = require("cors");
 
-
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(passport.initialize());
-app.use(cors({
+app.use(
+  cors({
     origin: "http://localhost:5173",
-    credentials: true
-}));
+    credentials: true,
+  }),
+);
+app.use(express.static("dist"));
 
 // Configure Passport
 require("./config/passport.js")(passport);
@@ -28,5 +29,11 @@ app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRouter);
 app.use("/api/users", userRouter);
 app.use("/api/stories", storyRouter);
+
+app.get("*name", (req, res) => {
+  console.log(req.params.name);
+
+  res.sendFile("index.html", { root: "dist" });
+});
 
 module.exports = app;

@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 export const getFollowReq = async () => {
-    const response = await axios.get("http://localhost:3000/api/users/followReqs", {
+    const response = await axios.get("/api/users/followReqs", {
       withCredentials: true,
     });
     console.log(response.data);
@@ -11,7 +11,7 @@ export const getFollowReq = async () => {
 };
 
 export const acceptFollowReq = async ({ reqId }) => {
-    const response = await axios.patch(`http://localhost:3000/api/users/followReq/${reqId}`, {}, {
+    const response = await axios.patch(`/api/users/followReq/${reqId}`, {}, {
       withCredentials: true,
     });
     console.log(response.data);
@@ -19,7 +19,7 @@ export const acceptFollowReq = async ({ reqId }) => {
 };
 
 export const rejectFollowReq = async ({ reqId }) => {
-    const response = await axios.delete(`http://localhost:3000/api/users/followReq/${reqId}`, {
+    const response = await axios.delete(`/api/users/followReq/${reqId}`, {
       withCredentials: true,
     });
     console.log(response.data);

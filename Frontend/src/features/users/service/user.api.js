@@ -2,7 +2,7 @@ import axios from "axios"
 
 export async function searchUser({ query }) {
 
-    const response = await axios.get("http://localhost:3000/api/users/search?q=" + query, {
+    const response = await axios.get("/api/users/search?q=" + query, {
         withCredentials: true
     })
     return response.data
@@ -11,7 +11,7 @@ export async function searchUser({ query }) {
 
 export async function followUser({ userId }) {
 
-    const response = await axios.post("http://localhost:3000/api/users/follow/" + userId, {}, {
+    const response = await axios.post("/api/users/follow/" + userId, {}, {
         withCredentials: true
     })
 
@@ -20,7 +20,7 @@ export async function followUser({ userId }) {
 }
 
 export async function getCurrentUser() {
-    const response = await axios.get("http://localhost:3000/api/auth/me", {
+    const response = await axios.get("/api/auth/me", {
         withCredentials: true
     })
     // console.log(response.data)
